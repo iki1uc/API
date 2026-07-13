@@ -1,0 +1,17 @@
+NAME = API
+ID = P01
+NUMMER = 02
+STATION = S02
+DIM = D5
+
+ROLLE = Durchlassachse / Verbindung / Transfer
+FUNKTION = leitet IQ, QI, EVO, UPD, UPG, BIOS, CALC weiter
+
+MODUS = enable (aktiv, durchlassend)
+OP = aktivierbar
+
+POSITION = D5 (Verbindungsebene)
+LINK = ANKER + AXI + 6d + 360 + 100 + 213 + ALLout
+
+STATUS = STABIL
+READY = 100%
