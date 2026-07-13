@@ -1,17 +1,58 @@
-NAME = API
-ID = P01
-NUMMER = 02
-STATION = S02
-DIM = D5
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>API – Identität</title>
 
-ROLLE = Durchlassachse / Verbindung / Transfer
-FUNKTION = leitet IQ, QI, EVO, UPD, UPG, BIOS, CALC weiter
+<style>
+body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
+h1 { color:#0f0; letter-spacing:4px; margin-bottom:30px; }
+.block { background:#111; border:1px solid #333; padding:25px; margin-bottom:30px; border-radius:8px; }
+.title { font-size:22px; color:#6cf; margin-bottom:10px; }
+ul { list-style:none; padding-left:0; }
+</style>
+</head>
 
-MODUS = enable (aktiv, durchlassend)
-OP = aktivierbar
+<body>
 
-POSITION = D5 (Verbindungsebene)
-LINK = ANKER + AXI + 6d + 360 + 100 + 213 + ALLout
+<h1>API – Identität</h1>
 
-STATUS = STABIL
-READY = 100%
+<div class="block">
+    <div class="title">System‑Identität</div>
+    <ul>
+        <li>ID: P01</li>
+        <li>Station: S02</li>
+        <li>Dimension: D5</li>
+        <li>Rolle: Durchlassachse</li>
+        <li>Modus: enable</li>
+    </ul>
+</div>
+
+<div class="block">
+    <div class="title">Durchgeleitete Achsen</div>
+    <ul>
+        <li>IQ</li>
+        <li>QI</li>
+        <li>EVO</li>
+        <li>UPD</li>
+        <li>UPG</li>
+        <li>BIOS</li>
+        <li>CALC</li>
+    </ul>
+</div>
+
+<div class="block">
+    <div class="title">System‑Bindungen</div>
+    <ul>
+        <li>ANKER (S01)</li>
+        <li>AXI</li>
+        <li>6d</li>
+        <li>360</li>
+        <li>100</li>
+        <li>213 (REAL)</li>
+        <li>ALLout</li>
+    </ul>
+</div>
+
+</body>
+</html>
