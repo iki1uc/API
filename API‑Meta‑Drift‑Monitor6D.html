@@ -1,0 +1,24 @@
+// ------------------------------------------------------
+// API Meta‑Drift‑Monitor
+// ------------------------------------------------------
+
+const driftGeo = new THREE.RingGeometry(1.2, 1.4, 64);
+const driftMat = new THREE.MeshBasicMaterial({
+    color: 0xffaa00,
+    transparent: true,
+    opacity: 0.5,
+    side: THREE.DoubleSide
+});
+const driftRing = new THREE.Mesh(driftGeo, driftMat);
+driftRing.rotation.x = Math.PI / 2;
+scene.add(driftRing);
+
+function updateDrift() {
+    const drift = API.achse?.reduce((a, b) => a + (parseInt(b.drift || 0)), 0) / (API.achse?.length || 1);
+
+    driftRing.material.opacity = drift / 100;
+    driftRing.scale.set(1 + drift / 50, 1 + drift / 50, 1);
+    driftRing.rotation.z += 0.01 + drift / 500;
+}
+
+setInterval(updateDrift, 50);
