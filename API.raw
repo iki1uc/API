@@ -18,7 +18,11 @@ window.API = {
         this.hardware = await this.loadCSV("H/hardware-form-nc-operator-5 (1).csv");
         this.geo = await this.loadCSV("T/station-geometrie-11 (8).csv");
 
-        console.log("API: Achsen, Hardware, Geometrie geladen");
+        this.sync = await import("./T/NC²□.sync");
+        this.align = await import("./T/NC²□octa³.align");
+        this.tech = await import("./T/6E → 6D.tech");
+
+        console.log("API: Alle Module geladen");
     }
 };
 
