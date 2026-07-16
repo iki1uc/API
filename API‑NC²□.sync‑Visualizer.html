@@ -1,0 +1,22 @@
+// ------------------------------------------------------
+// API NC²□.sync Visualizer
+// ------------------------------------------------------
+
+function showSync() {
+    const div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.top = "20px";
+    div.style.left = "20px";
+    div.style.color = "#6cf";
+    div.style.fontSize = "18px";
+    div.innerHTML = `
+        NC² Sync: ${API.sync?.default?.id || "?"}<br>
+        Axis: ${API.sync?.default?.axis || "?"}<br>
+        Dual: ${API.sync?.default?.dual || "?"}<br>
+        Merge: ${API.sync?.default?.merge || "?"}<br>
+        Align: ${API.sync?.default?.align || "?"}
+    `;
+    document.body.appendChild(div);
+}
+
+setTimeout(showSync, 1000);
