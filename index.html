@@ -1,48 +1,19 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>API – S02 · iki1uc</title>
-
-<style>
-body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
-h1 { color:#0f0; letter-spacing:4px; margin-bottom:30px; }
-.block { background:#111; border:1px solid #333; padding:25px; margin-bottom:30px; border-radius:8px; }
-.title { font-size:22px; color:#6cf; margin-bottom:10px; }
-pre { background:#000; border-left:3px solid #6cf; padding:15px; white-space:pre-wrap; }
-</style>
-</head>
-
-<body>
-
-<h1>API – S02 · iki1uc</h1>
-
-<div class="block">
-    <div class="title">API‑Status</div>
-    <pre id="apiStatus">Lade…</pre>
-</div>
-
-<!-- MODULE LADEN -->
-<script src="API.raw"></script>
-<script src="API.system.js"></script>
-<script src="API.ghost.js"></script>
-
 <script>
-setInterval(() => {
-    const status = document.getElementById("apiStatus");
+window.addEventListener("ghostReady", () => {
 
-    status.innerHTML =
-        "Achsen: " + (API.achse?.length || 0) + "\n" +
-        "Hardware: " + (API.hardware?.length || 0) + "\n" +
-        "Geometrie: " + (API.geo?.length || 0) + "\n" +
-        "NC² Sync: " + (API.sync ? "OK" : "NEIN") + "\n" +
-        "NC² Align: " + (API.align ? "OK" : "NEIN") + "\n" +
-        "Tech 6E→6D: " + (API.tech ? "OK" : "NEIN") + "\n" +
-        "ROOM B: " + (GHOST.room?.B ? "OK" : "NEIN") + "\n" +
-        "ROOM H: " + (GHOST.room?.H ? "OK" : "NEIN") + "\n" +
-        "ROOM T: " + (GHOST.room?.T ? "OK" : "NEIN");
-}, 500);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    camera.position.z = 6;
+
+    API_OrbitHeatmap(scene);
+
+    function animate(){
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+});
 </script>
-
-</body>
-</html>
