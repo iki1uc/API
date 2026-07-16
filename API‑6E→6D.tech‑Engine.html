@@ -1,0 +1,14 @@
+// ------------------------------------------------------
+// API 6E → 6D.tech Engine
+// ------------------------------------------------------
+
+function convert6Eto6D(input) {
+    if (!API.tech?.default) return "Tech nicht geladen";
+
+    return `
+        Input: ${input}
+        6E → 6D: ${API.tech.default.process(input)}
+    `;
+}
+
+window.convert6Eto6D = convert6Eto6D;
