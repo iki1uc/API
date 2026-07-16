@@ -1,0 +1,9 @@
+NC.².align = {
+    id: "NC².align",
+    axis_nc2: "□",
+    axis_octa: "octa³",
+    align: "NC².align.core",
+    sync: "NC².sync",
+    pulse: "NC².pulse",
+    error: "NC².error"
+}

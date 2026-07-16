@@ -1,0 +1,9 @@
+NC.².sync = {
+    id: "NC².sync",
+    axis: "□",          # Quadrat-Achse
+    dual: "NC².dual",
+    merge: "NC².merge",
+    align: "NC².align",
+    pulse: "NC².pulse",
+    error: "NC².error"
+}

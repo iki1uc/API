@@ -1,0 +1,7 @@
+transfer.6E_to_6D.raw = {
+    impulse_map: ALL×ALL.6E → ALL×ALL.6D,
+    gradient_map: 6E.gradient → 6D.gradient,
+    axis_anchor: geoAxes,
+    vector_align: geoLAGE,
+    station_bind: STATIONEN.raw
+}
