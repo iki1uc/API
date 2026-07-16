@@ -1,1 +1,30 @@
+function startFusionMatrix3D() {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.z = 6;
+
+    function node(x,y,z,color,label){
+        const geo = new THREE.SphereGeometry(0.3,32,32);
+        const mat = new THREE.MeshBasicMaterial({color});
+        const mesh = new THREE.Mesh(geo,mat);
+        mesh.position.set(x,y,z);
+        scene.add(mesh);
+        return mesh;
+    }
+
+    const n1=node(-2,-1,0,0x00aaff,"DUAL");
+    const n2=node(0,0,0,0xffff00,"MERGE");
+    const n3=node(2,1,0,0xff00aa,"FUSION");
+    const n4=node(3.5,2,0,0x00ff00,"SUPERFUSION");
+
+    function animate(){
+        requestAnimationFrame(animate);
+        renderer.render(scene,camera);
+    }
+    animate();
+}
 
