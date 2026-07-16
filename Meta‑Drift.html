@@ -1,0 +1,17 @@
+function startMetaDriftMonitor() {
+    const drift = GHOST.csv.achse.reduce((a,b)=>a+(parseInt(b.drift||0)),0);
+    const driftLevel = drift / GHOST.csv.achse.length;
+
+    const ringGeo = new THREE.RingGeometry(1.2,1.4,64);
+    const ringMat = new THREE.MeshBasicMaterial({color:0xffaa00,transparent:true,opacity:0.5});
+    const ring = new THREE.Mesh(ringGeo,ringMat);
+    ring.rotation.x = Math.PI/2;
+
+    scene.add(ring);
+
+    setInterval(()=>{
+        ring.material.opacity = driftLevel/100;
+        ring.scale.set(1+driftLevel/50,1+driftLevel/50,1);
+        ring.rotation.z += 0.01 + driftLevel/500;
+    },50);
+}
