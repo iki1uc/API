@@ -1,58 +1,25 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>API – Identität</title>
+window.API = {
+    async loadCSV(path) {
+        const response = await fetch(path);
+        const text = await response.text();
+        const lines = text.trim().split("\n");
+        const headers = lines.shift().split(",");
 
-<style>
-body { background:#000; color:#0f0; font-family:monospace; padding:40px; }
-h1 { color:#0f0; letter-spacing:4px; margin-bottom:30px; }
-.block { background:#111; border:1px solid #333; padding:25px; margin-bottom:30px; border-radius:8px; }
-.title { font-size:22px; color:#6cf; margin-bottom:10px; }
-ul { list-style:none; padding-left:0; }
-</style>
-</head>
+        return lines.map(line => {
+            const values = line.split(",");
+            const obj = {};
+            headers.forEach((h, i) => obj[h.trim()] = values[i].trim());
+            return obj;
+        });
+    },
 
-<body>
+    async loadAll() {
+        this.achse = await this.loadCSV("B/achse-bedeutung-15.csv");
+        this.hardware = await this.loadCSV("H/hardware-form-nc-operator-5 (1).csv");
+        this.geo = await this.loadCSV("T/station-geometrie-11 (8).csv");
 
-<h1>API – Identität</h1>
+        console.log("API: Achsen, Hardware, Geometrie geladen");
+    }
+};
 
-<div class="block">
-    <div class="title">System‑Identität</div>
-    <ul>
-        <li>ID: P01</li>
-        <li>Station: S02</li>
-        <li>Dimension: D5</li>
-        <li>Rolle: Durchlassachse</li>
-        <li>Modus: enable</li>
-    </ul>
-</div>
-
-<div class="block">
-    <div class="title">Durchgeleitete Achsen</div>
-    <ul>
-        <li>IQ</li>
-        <li>QI</li>
-        <li>EVO</li>
-        <li>UPD</li>
-        <li>UPG</li>
-        <li>BIOS</li>
-        <li>CALC</li>
-    </ul>
-</div>
-
-<div class="block">
-    <div class="title">System‑Bindungen</div>
-    <ul>
-        <li>ANKER (S01)</li>
-        <li>AXI</li>
-        <li>6d</li>
-        <li>360</li>
-        <li>100</li>
-        <li>213 (REAL)</li>
-        <li>ALLout</li>
-    </ul>
-</div>
-
-</body>
-</html>
+API.loadAll();
