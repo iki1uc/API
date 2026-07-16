@@ -1,0 +1,17 @@
+function startNC2SyncVisualizer() {
+    const sync = GHOST.nc2.sync.default;
+
+    const div = document.createElement("div");
+    div.style.position="absolute";
+    div.style.top="20px";
+    div.style.left="20px";
+    div.style.color="#6cf";
+    div.innerHTML = `
+        NC² Sync<br>
+        Axis: ${sync.axis}<br>
+        Dual: ${sync.dual}<br>
+        Merge: ${sync.merge}<br>
+        Align: ${sync.align}
+    `;
+    document.body.appendChild(div);
+}
