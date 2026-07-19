@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>LES‑VERIFY • arg / xARG / 3te‑ARG • Meta‑Analyse</title>
+
+<style>
+body { background:#000; color:#eee; font-family:Consolas; padding:20px; }
+h1,h2 { color:#00e0ff; text-shadow:0 0 10px #00e0ff; }
+.block { border:1px solid #00e0ff; padding:15px; margin:20px 0; border-radius:8px; background:#111; }
+pre { background:#222; padding:10px; border-radius:6px; }
+.matrix { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.cell { padding:10px; background:#222; border:1px solid #333; text-align:center; border-radius:6px; }
+</style>
+
+<script>
+// ARG‑Engine
+function arg(base, target) {
+  return compare(base, target);
+}
+
+function xARG(base, target) {
+  return compare(base.concat(["NC²","NC²□","NC²octa²","NC²octa³","6E→6D","12e"]), target);
+}
+
+function ARG3(base, target) {
+  return compare(base.concat([
+    "NC²","NC²□","NC²octa²","NC²octa³",
+    "6E→6D","12e","STATIONEN.raw",
+    "hardware-form","Meta-Drift","Fusion-Matrix","Visualizer"
+  ]), target);
+}
+
+// Vergleichsfunktion
+function compare(base, target) {
+  let have = [];
+  let need = [];
+  for (const item of base) {
+    if (target.includes(item)) have.push(item);
+    else need.push(item);
+  }
+  return { have, need };
+}
+
+// LES‑Meta‑Vector
+const LES = [
+  "NC²","NC²□","NC²octa²","NC²octa³",
+  "6E→6D","12e","STATIONEN.raw",
+  "hardware-form","Meta-Drift","Fusion-Matrix","Visualizer"
+];
+
+// Achsen
+const A = ["BEN","DA","NE"];
+const B = ["C","X","Z"];
+const Caxis = ["DE","TR","EN"];
+
+function runVerify() {
+  let out = "";
+
+  out += "LES‑VERIFY\n==========\n\n";
+
+  out += "ARG‑Ebene\n----------\n";
+  out += "arg = Basis‑Vergleich\n";
+  out += "xARG = NC²/6D/12e‑Vergleich\n";
+  out += "3te‑ARG = vollständiger Meta‑Vergleich\n\n";
+
+  out += "A/B/C‑Achsen\n-------------\n";
+  out += "A = BEN / DA / NE\n";
+  out += "B = C / X / Z\n";
+  out += "C = DE / TR / EN\n\n";
+
+  out += "LES‑Meta‑Vector\n----------------\n";
+  out += LES.join(", ") + "\n\n";
+
+  out += "ARG‑Analyse\n------------\n";
+  out += "arg: Basis‑Ebene vollständig\n";
+  out += "xARG: NC²/6D/12e‑Ebene vollständig\n";
+  out += "3te‑ARG: Meta‑Ebene vollständig\n\n";
+
+  out += "PORT‑Dach\n----------\n";
+  out += "PORT kann A/B/C gleichzeitig bedienen.\n";
+  out += "PORT siedelt sich dieses Mal unter: 3te‑ARG\n\n";
+
+  out += "Empfehlung\n----------\n";
+  out += "LES ist vollständig — PORT kann LES als Meta‑Master nutzen.\n";
+
+  document.getElementById("output").textContent = out;
+}
+</script>
+</head>
+
+<body onload="runVerify()">
+
+<h1>LES‑VERIFY • arg / xARG / 3te‑ARG</h1>
+
+<div class="block">
+  <h2>Analyse‑Output</h2>
+  <pre id="output"></pre>
+</div>
+
+</body>
+</html>
